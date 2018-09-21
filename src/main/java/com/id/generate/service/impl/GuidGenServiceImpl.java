@@ -17,7 +17,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class GuidGenServiceImpl implements GuidGenService {
 
-    private long sequence = -1l;
+    private long sequence = 0;
 
     private long lastTimeStamp = -1l;
 
@@ -27,7 +27,21 @@ public class GuidGenServiceImpl implements GuidGenService {
 
     private ReentrantLock lock = new ReentrantLock();
 
-    public GuidGenServiceImpl() {
+    private static volatile GuidGenServiceImpl guidGenService = null;
+
+    public static GuidGenServiceImpl getGuidGenService() {
+
+        if (null == guidGenService) {
+            synchronized (GuidGenServiceImpl.class) {
+                if (null == guidGenService) {
+                    guidGenService = new GuidGenServiceImpl();
+                }
+            }
+        }
+        return guidGenService;
+    }
+
+    private GuidGenServiceImpl() {
         init();
     }
 
@@ -37,7 +51,7 @@ public class GuidGenServiceImpl implements GuidGenService {
         machineIdProviderType = Integer.valueOf(PropertyUtils.get("machineIdProviderType"));
         switch (machineIdProviderType) {
             case 0:
-                this.machineId = Integer.valueOf(PropertyUtils.get("machineId"));
+                this.setMachineId(Integer.valueOf(PropertyUtils.get("machineId")));
                 break;
             case 1:
                 break;

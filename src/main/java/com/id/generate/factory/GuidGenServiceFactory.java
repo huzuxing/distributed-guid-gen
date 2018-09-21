@@ -12,7 +12,7 @@ public class GuidGenServiceFactory {
         throw new UnsupportedOperationException("could not init the class, it is sigle mode");
     }
 
-    private static final GuidGenService genService = new GuidGenServiceImpl();
+    private static final GuidGenService genService = GuidGenServiceImpl.getGuidGenService();
 
     public static GuidGenService idService() {
         return genService;
