@@ -9,7 +9,7 @@ import com.id.generate.service.impl.GuidGenServiceImpl;
 public class GuidGenServiceFactory {
 
     private GuidGenServiceFactory() {
-        throw new UnsupportedOperationException("could not init the class, it is sigle mode");
+        throw new UnsupportedOperationException("could not init the class, it is single mode");
     }
 
     private static final GuidGenService genService = GuidGenServiceImpl.getGuidGenService();

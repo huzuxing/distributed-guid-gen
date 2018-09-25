@@ -15,8 +15,7 @@ public class GuidGenTest {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                System.out.println(id);
-                System.out.println(guidGenService.expGuid(id));
+                System.out.println(id + " " + guidGenService.expGuid(id));
             }).start();
         }
     }
