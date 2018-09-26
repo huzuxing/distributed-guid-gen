@@ -49,6 +49,10 @@ public class GuidMeta {
         return machineBits + sequenceBits;
     }
 
+    public long getMachineBitsStartPos() {
+        return this.sequenceBits;
+    }
+
     public long getMachineIdBitMask() {
         return -1l^(-1l << machineBits);
     }

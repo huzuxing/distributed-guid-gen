@@ -67,7 +67,7 @@ public class GuidGenServiceImpl implements GuidGenService {
             long timestamp = TimeUtils.getTime();
             TimeUtils.valideTimestamp(lastTimeStamp, timestamp);
             if (timestamp == lastTimeStamp) {
-                sequence = (sequence + 1) & guidMeta.getSequenceBits();
+                sequence = (sequence + 1) & guidMeta.getSequenceBitMask();
                 if (0 == sequence) {
                     timestamp = TimeUtils.tillNextTime(lastTimeStamp);
                 }
